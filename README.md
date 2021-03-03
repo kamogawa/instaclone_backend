@@ -1,7 +1,15 @@
 #Instaclone Backend
 
-npx prisma migrate dev --preview-feature
+InstaCloneバックエンド
+生成
+npx prisma init
 
-todo
-0. xxx
-0. xxx
+## User:
+
+- [ ] アカウント生成
+- [ ] ログイン
+- [ ] フォロー
+- [ ] フォローユーザー
+- [ ] プロフィール
+- [ ] プロフィール編集
+- [ ] プロフィール画像
