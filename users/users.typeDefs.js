@@ -1,7 +1,7 @@
 import { gql } from "apollo-server";
 
 export default gql`
-  type  User{
+  type  User {
     id: Int!
     firstName: String!
     lastName: String
@@ -10,7 +10,7 @@ export default gql`
     createdAt: String!
     updatedAt: String!
   }
-  type  Mutataion {
+  type Mutation {
     createAccount(
       firstName: String!
       lastName: String

@@ -7,6 +7,6 @@ const server = new ApolloServer({
   schema
 });
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 4000;
 
-server.listen(PORT).then(() => console.log(`Server is running Localost:${port}`))
+server.listen(PORT).then(() => console.log(`Server is running Localost:${PORT}`))
