@@ -1,42 +1,9 @@
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 import client from "../client"
 
 export default {
   Mutation: {
-    createAccount: async (
-      _, 
-      { firstName, lastName, username, email, password }
-    )　=> {
-      try {
-        const existingUser = await client.user.findFirst({
-          where: {
-            OR: [
-              {
-                username,
-              },
-              {
-                email
-              }
-            ]
-          }
-        });
-        if (existingUser) {
-          throw new Error("This username/email is already taken.");
-        }
-        const uglyPassword = await bcrypt.hash(password, 10);
-        return client.user.create({ 
-          data: {
-            username,
-            email,
-            firstName,
-            lastName,
-            password: uglyPassword
-          },
-        });
-      } catch (error) {
-        return error;
-      }
-    },
     login: async(_, {username, password}) => {
       const user = await client.user.findFirst({ where: { username } });
       if (!user) {
@@ -52,7 +19,11 @@ export default {
           error: "Incorrect Password"
         };
       }
-      return "test"
+      const token = await jwt.sign({id: user.id}, process.env.SECRER_KEY);
+      return {
+        ok: true,
+        token
+      };
     },
   }
 }
