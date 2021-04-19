@@ -19,7 +19,6 @@ export default {
           error: "Incorrect password.",
         };
       }
-      console.log(process.env.SECRET_KEY);
       const token = await jwt.sign({ id: user.id }, process.env.SECRET_KEY);
       return {
         ok: true,
